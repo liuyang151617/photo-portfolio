@@ -193,7 +193,6 @@ body {
   margin-bottom: 20px;
   line-height: 1.2;
   background: linear-gradient(to right, #fff, #aaa);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1005,3 +1004,5 @@ html {
     padding: 4px 12px;
     font-size: 12px;
     bottom: 30px;
+  }
+}
