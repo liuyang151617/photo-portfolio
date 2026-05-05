@@ -1,115 +1,264 @@
-// 1. 滚动时作品渐入效果（优化触发时机，更自然）
-const items = document.querySelectorAll('.item');
-const triggerOffset = 0.82; // 触发动画的偏移量
+/* =============================================
+   LENS & LIGHT — Photography Portfolio
+   script.js
+============================================= */
 
-function checkScroll() {
-  const trigger = window.innerHeight * triggerOffset;
-  
-  // 作品渐入
-  items.forEach(item => {
-    const itemTop = item.getBoundingClientRect().top;
-    if (itemTop < trigger) {
-      item.classList.add('show');
-    }
-  });
+'use strict';
 
-  // 导航栏滚动变化
-  const navbar = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    navbar.classList.add('scroll');
-  } else {
-    navbar.classList.remove('scroll');
-  }
-
-  // 回到顶部按钮显示/隐藏
-  const backToTop = document.getElementById('backToTop');
-  if (window.scrollY > 300) {
-    backToTop.classList.add('show');
-  } else {
-    backToTop.classList.remove('show');
-  }
-}
-
-// 初始加载触发一次
+/* ---- Preloader ---- */
 window.addEventListener('load', () => {
   setTimeout(() => {
-    checkScroll();
-  }, 200);
-});
-
-// 滚动时持续触发
-window.addEventListener('scroll', checkScroll);
-
-// 2. 回到顶部功能
-const backToTop = document.getElementById('backToTop');
-backToTop.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-// 3. 作品分类筛选功能（新增，提升实用性）
-const filterBtns = document.querySelectorAll('.filter-btn');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // 移除所有按钮的active类
-    filterBtns.forEach(b => b.classList.remove('active'));
-    // 给当前按钮添加active类
-    btn.classList.add('active');
-    
-    const filter = btn.getAttribute('data-filter');
-    
-    // 筛选作品
-    items.forEach(item => {
-      if (filter === 'all' || item.classList.contains(filter)) {
-        item.style.display = 'block';
-        // 重新触发渐入动画（延迟一点，更自然）
-        setTimeout(() => {
-          checkScroll();
-        }, 100);
-      } else {
-        item.style.display = 'none';
-      }
+    document.getElementById('preloader').classList.add('hidden');
+    // Trigger hero animations
+    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 200 + i * 150);
     });
+  }, 2200);
+});
+
+/* ---- Custom Cursor ---- */
+const cursor = document.getElementById('cursor');
+const cursorFollower = document.getElementById('cursorFollower');
+
+if (cursor && cursorFollower) {
+  let mouseX = 0, mouseY = 0;
+  let followerX = 0, followerY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  const animateFollower = () => {
+    followerX += (mouseX - followerX) * 0.1;
+    followerY += (mouseY - followerY) * 0.1;
+    cursorFollower.style.left = followerX + 'px';
+    cursorFollower.style.top = followerY + 'px';
+    requestAnimationFrame(animateFollower);
+  };
+  animateFollower();
+}
+
+/* ---- Navigation ---- */
+const nav = document.getElementById('nav');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+// Scroll effect
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Mobile toggle
+navToggle?.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navMenu.classList.toggle('open');
+});
+
+// Close menu on link click
+navMenu?.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navMenu.classList.remove('open');
   });
 });
 
-// 4. 导航链接平滑滚动（优化体验）
+// Close menu on backdrop click
+document.addEventListener('click', (e) => {
+  if (navMenu?.classList.contains('open') &&
+      !navMenu.contains(e.target) &&
+      !navToggle.contains(e.target)) {
+    navToggle.classList.remove('active');
+    navMenu.classList.remove('open');
+  }
+});
+
+/* ---- Hero Slideshow ---- */
+const heroImgs = document.querySelectorAll('.hero-img');
+const heroCounter = document.getElementById('heroCounter');
+let currentSlide = 0;
+
+const showSlide = (idx) => {
+  heroImgs.forEach(img => img.classList.remove('active'));
+  heroImgs[idx].classList.add('active');
+  if (heroCounter) {
+    heroCounter.textContent = String(idx + 1).padStart(2, '0');
+  }
+};
+
+if (heroImgs.length > 0) {
+  showSlide(0);
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % heroImgs.length;
+    showSlide(currentSlide);
+  }, 5000);
+}
+
+/* ---- Scroll Reveal ---- */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Don't unobserve so re-entry works, but for perf we can:
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+// Observe all reveal elements EXCEPT hero (hero handled by preloader)
+document.querySelectorAll('.reveal:not(.hero .reveal)').forEach(el => {
+  revealObserver.observe(el);
+});
+
+/* ---- Staggered Gallery Reveal ---- */
+const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const items = entry.target.closest('#gallery')?.querySelectorAll('.gallery-item') || [];
+      items.forEach((item, idx) => {
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0)';
+        }, idx * 100);
+      });
+      galleryObserver.disconnect();
+    }
+  });
+}, { threshold: 0.1 });
+
+galleryItems.forEach(item => {
+  item.style.opacity = '0';
+  item.style.transform = 'translateY(30px)';
+  item.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+});
+
+if (galleryItems.length > 0) {
+  galleryObserver.observe(galleryItems[0]);
+}
+
+/* ---- Counter Animation ---- */
+const counters = document.querySelectorAll('.stat-num');
+
+const animateCounter = (el) => {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 2000;
+  const step = 16;
+  const totalSteps = duration / step;
+  const increment = target / totalSteps;
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current);
+  }, step);
+};
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+/* ---- Lightbox ---- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const imgEl = item.querySelector('.gallery-img');
+    const bg = imgEl?.style.backgroundImage;
+    const title = item.querySelector('h3')?.textContent || '';
+    const year = item.querySelector('p')?.textContent || '';
+
+    if (bg && lightboxImg) {
+      lightboxImg.style.backgroundImage = bg;
+      lightboxCaption.textContent = `${title} — ${year}`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+const closeLightbox = () => {
+  lightbox?.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+lightboxClose?.addEventListener('click', closeLightbox);
+lightbox?.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+/* ---- Parallax Hero Title (subtle) ---- */
+const heroContent = document.querySelector('.hero-content');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (heroContent && scrollY < window.innerHeight) {
+    heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+    heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
+  }
+}, { passive: true });
+
+/* ---- Series Card Hover Tilt ---- */
+document.querySelectorAll('.series-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0)';
+  });
+});
+
+/* ---- Smooth anchor scroll ---- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ---- Nav active link on scroll ---- */
+const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
-    
-    if (targetElement) {
-      const navbarHeight = document.getElementById('navbar').offsetHeight;
-      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${id}`
+          ? 'var(--text)'
+          : 'var(--text-muted)';
       });
     }
   });
-});
+}, { threshold: 0.4 });
 
-// 5. 图片加载动画（新增，提升高级感）
-const images = document.querySelectorAll('img');
-images.forEach(img => {
-  // 初始透明度0
-  img.style.opacity = '0';
-  img.style.transition = 'opacity 0.8s ease';
-  
-  // 图片加载完成后显示
-  img.addEventListener('load', () => {
-    img.style.opacity = '1';
-  });
-  
-  // 处理缓存图片
-  if (img.complete) {
-    img.style.opacity = '1';
-  }
-});
+sections.forEach(section => sectionObserver.observe(section));
