@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>摄影师作品集</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="styles.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -23,13 +23,13 @@
 
 <section class="hero">
   <div class="overlay"></div>
-  <div class="hero-content">
+  <div class="hero-content reveal">
     <h1>Visual Storytelling</h1>
     <p>Photography Portfolio</p>
   </div>
 </section>
 
-<section class="filter-bar">
+<section class="filter-bar reveal">
   <button data-filter="all" class="active">All</button>
   <button data-filter="portrait">Portrait</button>
   <button data-filter="landscape">Landscape</button>
@@ -37,27 +37,25 @@
 </section>
 
 <section id="gallery" class="gallery">
-  <div class="item portrait"><img src="https://picsum.photos/500/700?1"></div>
-  <div class="item landscape"><img src="https://picsum.photos/500/700?2"></div>
-  <div class="item street"><img src="https://picsum.photos/500/700?3"></div>
-  <div class="item portrait"><img src="https://picsum.photos/500/700?4"></div>
-  <div class="item landscape"><img src="https://picsum.photos/500/700?5"></div>
-  <div class="item street"><img src="https://picsum.photos/500/700?6"></div>
+  <div class="item portrait reveal"><img loading="lazy" src="images/photo1.jpg"></div>
+  <div class="item landscape reveal"><img loading="lazy" src="images/photo2.jpg"></div>
+  <div class="item street reveal"><img loading="lazy" src="images/photo3.jpg"></div>
 </section>
 
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img" />
+  <img id="lightbox-img">
 </div>
 
-<section id="about" class="about">
+<section id="about" class="about reveal">
   <h2>About Me</h2>
-  <p>Professional photographer specializing in storytelling, brand and editorial visuals.</p>
+  <p>Professional photographer specializing in storytelling and brand visuals.</p>
 </section>
 
-<footer id="contact">
+<footer id="contact" class="reveal">
   <p>© 2026 YOUR NAME | your@email.com</p>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
