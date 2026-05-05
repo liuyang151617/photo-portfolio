@@ -1,48 +1,17 @@
-// 分类筛选
-const buttons = document.querySelectorAll('.filter-bar button');
+// 滚动时图片渐入效果
 const items = document.querySelectorAll('.item');
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.active').classList.remove('active');
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    items.forEach(item => {
-      item.style.display =
-        filter === 'all' || item.classList.contains(filter)
-        ? 'block'
-        : 'none';
-    });
-  });
-});
-
-// Lightbox
-const images = document.querySelectorAll('.item img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-
-images.forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
-  });
-});
-
-lightbox.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-
-// 滚动动画
-const reveals = document.querySelectorAll('.reveal');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.82;
+  items.forEach(item => {
+    const top = item.getBoundingClientRect().top;
+    if (top < trigger) {
+      item.classList.add('show');
     }
   });
-}, { threshold: 0.15 });
+});
 
-reveals.forEach(el => observer.observe(el));
+// 页面刚加载时自动触发一次
+setTimeout(() => {
+  window.dispatchEvent(new Event('scroll'));
+}, 200);
