@@ -1,4 +1,4 @@
-
+// 分类筛选
 const buttons = document.querySelectorAll('.filter-bar button');
 const items = document.querySelectorAll('.item');
 
@@ -12,8 +12,8 @@ buttons.forEach(btn => {
     items.forEach(item => {
       item.style.display =
         filter === 'all' || item.classList.contains(filter)
-          ? 'block'
-          : 'none';
+        ? 'block'
+        : 'none';
     });
   });
 });
@@ -33,3 +33,16 @@ images.forEach(img => {
 lightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
 });
+
+// 滚动动画
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
