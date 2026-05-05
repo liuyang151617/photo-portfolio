@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>高级摄影作品集</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>摄影师作品集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">PHOTOGRAPHER</div>
+  <div class="logo">YOUR NAME</div>
   <nav>
-    <a href="#">首页</a>
-    <a href="#gallery">作品</a>
-    <a href="#about">关于</a>
-    <a href="#contact">联系</a>
+    <a href="#">Home</a>
+    <a href="#gallery">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section class="hero">
+  <div class="overlay"></div>
   <div class="hero-content">
-    <h1>捕捉光与影的瞬间</h1>
-    <p>Professional Photography Portfolio</p>
+    <h1>Visual Storytelling</h1>
+    <p>Photography Portfolio</p>
   </div>
 </section>
 
 <section class="filter-bar">
-  <button data-filter="all">全部</button>
-  <button data-filter="portrait">人像</button>
-  <button data-filter="landscape">风光</button>
-  <button data-filter="street">街拍</button>
+  <button data-filter="all" class="active">All</button>
+  <button data-filter="portrait">Portrait</button>
+  <button data-filter="landscape">Landscape</button>
+  <button data-filter="street">Street</button>
 </section>
 
 <section id="gallery" class="gallery">
-  <div class="item portrait"><img src="https://picsum.photos/400/500?1"></div>
-  <div class="item landscape"><img src="https://picsum.photos/400/500?2"></div>
-  <div class="item street"><img src="https://picsum.photos/400/500?3"></div>
-  <div class="item portrait"><img src="https://picsum.photos/400/500?4"></div>
-  <div class="item landscape"><img src="https://picsum.photos/400/500?5"></div>
-  <div class="item street"><img src="https://picsum.photos/400/500?6"></div>
+  <div class="item portrait"><img src="https://picsum.photos/500/700?1"></div>
+  <div class="item landscape"><img src="https://picsum.photos/500/700?2"></div>
+  <div class="item street"><img src="https://picsum.photos/500/700?3"></div>
+  <div class="item portrait"><img src="https://picsum.photos/500/700?4"></div>
+  <div class="item landscape"><img src="https://picsum.photos/500/700?5"></div>
+  <div class="item street"><img src="https://picsum.photos/500/700?6"></div>
 </section>
 
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
+  <img id="lightbox-img" />
 </div>
 
 <section id="about" class="about">
-  <h2>关于我</h2>
-  <p>这里写你的摄影理念 / 简介 / 客户案例</p>
+  <h2>About Me</h2>
+  <p>Professional photographer specializing in storytelling, brand and editorial visuals.</p>
 </section>
 
 <footer id="contact">
-  <p>© 2026 高级摄影师 | 联系: your@email.com</p>
+  <p>© 2026 YOUR NAME | your@email.com</p>
 </footer>
 
 <script src="script.js"></script>
