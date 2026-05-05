@@ -3,59 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>摄影师作品集</title>
-
-  <link rel="stylesheet" href="styles.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>PHOTOGRAPHY | 个人摄影作品集</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">YOUR NAME</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#gallery">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<!-- 导航 -->
+<nav>
+  <div class="logo">PHOTOGRAPHY</div>
+  <div class="menu">
+    <a href="#home">首页</a>
+    <a href="#work">作品</a>
+    <a href="#about">关于</a>
+    <a href="#contact">联系</a>
+  </div>
+</nav>
 
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content reveal">
-    <h1>Visual Storytelling</h1>
-    <p>Photography Portfolio</p>
+<!-- 首屏 -->
+<section class="hero" id="home">
+  <h1>我的摄影世界</h1>
+  <p>用光与影记录瞬间，用镜头讲述故事 | 专注人像 / 风光 / 纪实摄影</p>
+</section>
+
+<!-- 作品展示 -->
+<section class="gallery" id="work">
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=1" alt="摄影作品">
+    <div class="info">
+      <div class="title">城市黄昏</div>
+      <div class="desc">风光 / 2025</div>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=2" alt="摄影作品">
+    <div class="info">
+      <div class="title">人像情绪</div>
+      <div class="desc">人像 / 2025</div>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=3" alt="摄影作品">
+    <div class="info">
+      <div class="title">山野清晨</div>
+      <div class="desc">风光 / 2025</div>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=4" alt="摄影作品">
+    <div class="info">
+      <div class="title">街头纪实</div>
+      <div class="desc">人文 / 2025</div>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=5" alt="摄影作品">
+    <div class="info">
+      <div class="title">光影肖像</div>
+      <div class="desc">人像 / 2025</div>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://picsum.photos/1200/1800?random=6" alt="摄影作品">
+    <div class="info">
+      <div class="title">海岸线</div>
+      <div class="desc">风光 / 2025</div>
+    </div>
   </div>
 </section>
 
-<section class="filter-bar reveal">
-  <button data-filter="all" class="active">All</button>
-  <button data-filter="portrait">Portrait</button>
-  <button data-filter="landscape">Landscape</button>
-  <button data-filter="street">Street</button>
-</section>
-
-<section id="gallery" class="gallery">
-  <div class="item portrait reveal"><img loading="lazy" src="images/photo1.jpg"></div>
-  <div class="item landscape reveal"><img loading="lazy" src="images/photo2.jpg"></div>
-  <div class="item street reveal"><img loading="lazy" src="images/photo3.jpg"></div>
-</section>
-
-<div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
-</div>
-
-<section id="about" class="about reveal">
-  <h2>About Me</h2>
-  <p>Professional photographer specializing in storytelling and brand visuals.</p>
-</section>
-
-<footer id="contact" class="reveal">
-  <p>© 2026 YOUR NAME | your@email.com</p>
+<!-- 底部 -->
+<footer>
+  © 2025 PHOTOGRAPHY 个人摄影作品集 | 保留所有权利
 </footer>
 
-<script src="script.js"></script>
-
+<script src="main.js"></script>
 </body>
 </html>
