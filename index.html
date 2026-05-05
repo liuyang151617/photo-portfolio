@@ -73,60 +73,71 @@
       <p class="section-label reveal">精选作品</p>
       <h2 class="section-title reveal">每一帧，<br><em>都是故事</em></h2>
     </div>
+
+    <!-- 分类筛选 -->
+    <div class="gallery-filter reveal">
+      <button class="filter-btn active" data-filter="全部">全部</button>
+      <button class="filter-btn" data-filter="自然">自然</button>
+      <button class="filter-btn" data-filter="人文">人文</button>
+      <button class="filter-btn" data-filter="人像">人像</button>
+      <button class="filter-btn" data-filter="科技">科技</button>
+    </div>
+
     <div class="gallery" id="gallery">
-      <div class="gallery-item gallery-item--large reveal" data-category="风光">
+      <!-- 自然 -->
+      <div class="gallery-item gallery-item--large" data-category="自然">
         <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">风光</span>
-          <h3>山脉的呼吸</h3>
-          <p>2024</p>
-        </div>
-        <div class="gallery-overlay"></div>
+        <div class="gallery-info"><span class="gallery-cat">自然</span><h3>山脉的呼吸</h3><p>2024</p></div>
       </div>
-      <div class="gallery-item reveal" data-category="人像">
-        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">人像</span>
-          <h3>静默之眼</h3>
-          <p>2024</p>
-        </div>
-        <div class="gallery-overlay"></div>
-      </div>
-      <div class="gallery-item reveal" data-category="城市">
-        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">城市</span>
-          <h3>城市脉搏</h3>
-          <p>2023</p>
-        </div>
-        <div class="gallery-overlay"></div>
-      </div>
-      <div class="gallery-item reveal" data-category="自然">
+      <div class="gallery-item" data-category="自然">
         <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">自然</span>
-          <h3>林间晨光</h3>
-          <p>2023</p>
-        </div>
-        <div class="gallery-overlay"></div>
+        <div class="gallery-info"><span class="gallery-cat">自然</span><h3>林间晨光</h3><p>2023</p></div>
       </div>
-      <div class="gallery-item gallery-item--wide reveal" data-category="风光">
+      <div class="gallery-item gallery-item--wide" data-category="自然">
         <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">风光</span>
-          <h3>天际之线</h3>
-          <p>2024</p>
-        </div>
-        <div class="gallery-overlay"></div>
+        <div class="gallery-info"><span class="gallery-cat">自然</span><h3>天际之线</h3><p>2024</p></div>
       </div>
-      <div class="gallery-item reveal" data-category="人像">
+
+      <!-- 人文 -->
+      <div class="gallery-item" data-category="人文">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">人文</span><h3>城市脉搏</h3><p>2023</p></div>
+      </div>
+      <div class="gallery-item gallery-item--large" data-category="人文">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">人文</span><h3>街角记忆</h3><p>2023</p></div>
+      </div>
+      <div class="gallery-item gallery-item--wide" data-category="人文">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1400&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">人文</span><h3>晨雾中的村庄</h3><p>2024</p></div>
+      </div>
+
+      <!-- 人像 -->
+      <div class="gallery-item" data-category="人像">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">人像</span><h3>静默之眼</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item" data-category="人像">
         <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80')"></div>
-        <div class="gallery-info">
-          <span class="gallery-cat">人像</span>
-          <h3>光的剪影</h3>
-          <p>2024</p>
-        </div>
-        <div class="gallery-overlay"></div>
+        <div class="gallery-info"><span class="gallery-cat">人像</span><h3>光的剪影</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item gallery-item--wide" data-category="人像">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=1400&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">人像</span><h3>逆光少女</h3><p>2024</p></div>
+      </div>
+
+      <!-- 科技 -->
+      <div class="gallery-item gallery-item--large" data-category="科技">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>电路之美</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item" data-category="科技">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>数据流动</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item" data-category="科技">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>未来建筑</h3><p>2023</p></div>
       </div>
     </div>
   </section>
@@ -168,24 +179,43 @@
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <span class="stat-num" data-target="248">0</span>
-        <span class="stat-label">作品数量</span>
+  <!-- 摄影师介绍（替换原 Stats 区域） -->
+  <section class="photographer-intro">
+    <div class="intro-inner">
+      <div class="intro-portrait reveal">
+        <div class="intro-portrait-img" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80')"></div>
+        <div class="intro-portrait-frame"></div>
       </div>
-      <div class="stat-item reveal">
-        <span class="stat-num" data-target="32">0</span>
-        <span class="stat-label">国家足迹</span>
-      </div>
-      <div class="stat-item reveal">
-        <span class="stat-num" data-target="18">0</span>
-        <span class="stat-label">国际奖项</span>
-      </div>
-      <div class="stat-item reveal">
-        <span class="stat-num" data-target="9">0</span>
-        <span class="stat-label">年从业经验</span>
+      <div class="intro-content">
+        <p class="section-label reveal">摄影师简介</p>
+        <h2 class="intro-name reveal">陈 远 山</h2>
+        <p class="intro-en reveal">CHEN YUANSHAN · PHOTOGRAPHER</p>
+        <p class="intro-bio reveal">
+          毕业于中央美术学院摄影系，现居北京。从事商业与艺术摄影逾九年，足迹横跨亚欧非三大洲，
+          作品曾入选平遥国际摄影大展、连州摄影年展，并获得2022年度《中国摄影》年度人物提名。
+        </p>
+        <p class="intro-bio reveal">
+          擅长以极简构图捕捉光影细节，致力于探索自然、人文与科技之间的视觉张力。
+          相信摄影不只是记录，更是一种沉默而有力的表达方式。
+        </p>
+        <div class="intro-awards reveal">
+          <div class="award-item">
+            <span class="award-year">2022</span>
+            <span class="award-name">《中国摄影》年度人物提名</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2021</span>
+            <span class="award-name">平遥国际摄影大展 · 优秀作品奖</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2020</span>
+            <span class="award-name">连州摄影年展 · 入选作品</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2019</span>
+            <span class="award-name">索尼世界摄影奖 · 国家入围奖</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -197,15 +227,15 @@
       <div class="about-img-accent"></div>
     </div>
     <div class="about-content">
-      <p class="section-label reveal">摄影师</p>
+      <p class="section-label reveal">创作理念</p>
       <h2 class="section-title reveal">用镜头<br><em>感知世界</em></h2>
       <p class="about-text reveal">我相信每一张照片背后都有一个等待被诉说的故事。摄影于我，不仅是记录，更是一种感知与表达的方式——在按下快门的瞬间，时间凝固，情感永恒。</p>
       <p class="about-text reveal">从喜马拉雅山脉的晨曦到东京街头的霓虹，我的镜头跨越地理与文化，寻找那些触动人心的瞬间。</p>
       <div class="about-tags reveal">
-        <span>风光摄影</span>
+        <span>自然风光</span>
         <span>人文纪实</span>
-        <span>城市影像</span>
-        <span>商业摄影</span>
+        <span>人像摄影</span>
+        <span>科技影像</span>
       </div>
     </div>
   </section>
