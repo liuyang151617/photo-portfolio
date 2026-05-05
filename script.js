@@ -142,37 +142,21 @@ if (galleryItems.length > 0) {
   galleryObserver.observe(galleryItems[0]);
 }
 
-/* ---- Counter Animation ---- */
-const counters = document.querySelectorAll('.stat-num');
+/* ---- Gallery Filter ---- */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const allItems = document.querySelectorAll('.gallery-item');
 
-const animateCounter = (el) => {
-  const target = parseInt(el.dataset.target, 10);
-  const duration = 2000;
-  const step = 16;
-  const totalSteps = duration / step;
-  const increment = target / totalSteps;
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-    el.textContent = Math.floor(current);
-  }, step);
-};
-
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    allItems.forEach(item => {
+      const match = filter === '全部' || item.dataset.category === filter;
+      item.classList.toggle('hidden', !match);
+    });
   });
-}, { threshold: 0.5 });
-
-counters.forEach(counter => counterObserver.observe(counter));
+});
 
 /* ---- Lightbox ---- */
 const lightbox = document.getElementById('lightbox');
