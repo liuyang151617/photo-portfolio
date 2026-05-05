@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高级摄影作品集</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">PHOTOGRAPHER</div>
+  <nav>
+    <a href="#">首页</a>
+    <a href="#gallery">作品</a>
+    <a href="#about">关于</a>
+    <a href="#contact">联系</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>捕捉光与影的瞬间</h1>
+    <p>Professional Photography Portfolio</p>
+  </div>
+</section>
+
+<section class="filter-bar">
+  <button data-filter="all">全部</button>
+  <button data-filter="portrait">人像</button>
+  <button data-filter="landscape">风光</button>
+  <button data-filter="street">街拍</button>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="item portrait"><img src="https://picsum.photos/400/500?1"></div>
+  <div class="item landscape"><img src="https://picsum.photos/400/500?2"></div>
+  <div class="item street"><img src="https://picsum.photos/400/500?3"></div>
+  <div class="item portrait"><img src="https://picsum.photos/400/500?4"></div>
+  <div class="item landscape"><img src="https://picsum.photos/400/500?5"></div>
+  <div class="item street"><img src="https://picsum.photos/400/500?6"></div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img">
+</div>
+
+<section id="about" class="about">
+  <h2>关于我</h2>
+  <p>这里写你的摄影理念 / 简介 / 客户案例</p>
+</section>
+
+<footer id="contact">
+  <p>© 2026 高级摄影师 | 联系: your@email.com</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
