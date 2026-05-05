@@ -1,230 +1,242 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMINANCE | 个人摄影作品集</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- 引入图标（保留原有） -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LENS & LIGHT — 摄影作品集</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- 新增：页面加载动画容器 -->
-  <div class="loader" id="loader">
-    <div class="loader-content">
-      <div class="loader-spinner"></div>
-      <p>光影加载中...</p>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">L&L</div>
+      <div class="preloader-bar"><span></span></div>
     </div>
   </div>
 
-<!-- 导航（保留原有，适配新功能） -->
-<nav id="navbar">
-  <div class="logo">LUMINANCE</div>
-  <div class="menu">
-    <a href="#home" class="nav-link">首页</a>
-    <a href="#work" class="nav-link">作品</a>
-    <a href="#about" class="nav-link">关于</a>
-    <a href="#contact" class="nav-link">联系</a>
-  </div>
-</nav>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">LENS <em>&</em> LIGHT</div>
+    <div class="nav-menu" id="navMenu">
+      <a href="#work" class="nav-link">作品</a>
+      <a href="#series" class="nav-link">系列</a>
+      <a href="#about" class="nav-link">关于</a>
+      <a href="#contact" class="nav-link">联系</a>
+    </div>
+    <div class="nav-toggle" id="navToggle">
+      <span></span><span></span>
+    </div>
+  </nav>
 
-<!-- 首屏（新增：全屏视频背景，替换原有纯背景） -->
-<section class="hero" id="home">
-  <div class="hero-overlay"></div>
-  <!-- 新增：视频背景（自动播放、静音、循环） -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-motion-photography-of-light-trails-on-a-city-street-1211-large.mp4" type="video/mp4">
-    <!-- 降级方案：视频无法加载时显示图片 -->
-    <img src="https://picsum.photos/1920/1080?random=0" alt="首屏背景" class="hero-fallback">
-  </video>
-  <div class="hero-content">
-    <h1>光影叙事</h1>
-    <p>用镜头捕捉瞬间的情绪，用光影定格永恒的故事 | 专注人像 / 风光 / 纪实摄影</p>
-    <a href="#work" class="btn">查看作品 <i class="fa-solid fa-chevron-down ml-2"></i></a>
-  </div>
-</section>
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-img hero-img--1"></div>
+      <div class="hero-img hero-img--2"></div>
+      <div class="hero-img hero-img--3"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">2024 摄影作品集</p>
+      <h1 class="hero-title reveal">
+        <span>光与影</span>
+        <em>之间</em>
+      </h1>
+      <p class="hero-sub reveal">捕捉稍纵即逝的瞬间，探索光影的极致之美</p>
+      <a href="#work" class="hero-cta reveal">
+        <span>探索作品</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <span>向下滚动</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+    <div class="hero-counter">
+      <span id="heroCounter">01</span>
+      <span class="hero-counter-sep">/</span>
+      <span>03</span>
+    </div>
+  </section>
 
-<!-- 作品展示（新增：灯箱触发、详情页跳转） -->
-<section class="gallery-section">
-  <div class="gallery-filter" id="work">
-    <button class="filter-btn active" data-filter="all">全部</button>
-    <button class="filter-btn" data-filter="portrait">人像</button>
-    <button class="filter-btn" data-filter="scenery">风光</button>
-    <button class="filter-btn" data-filter="documentary">纪实</button>
-  </div>
-  <div class="gallery">
-    <!-- 作品1：新增data属性（灯箱图片、详情页参数） -->
-    <div class="item portrait" data-large-img="https://picsum.photos/1200/1800?random=1" data-detail-id="1" data-title="光影肖像" data-desc="人像 / 2025" data-story="这组作品拍摄于秋日午后，利用侧光勾勒人物轮廓，捕捉人物自然松弛的情绪，没有刻意摆拍，只记录最真实的状态。镜头选用50mm定焦，突出人物面部细节，背景虚化处理，让光影成为画面的主角。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=1" alt="人像摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">光影肖像</div>
-          </div>
+  <!-- Featured Work -->
+  <section class="work" id="work">
+    <div class="section-header">
+      <p class="section-label reveal">精选作品</p>
+      <h2 class="section-title reveal">每一帧，<br><em>都是故事</em></h2>
+    </div>
+    <div class="gallery" id="gallery">
+      <div class="gallery-item gallery-item--large reveal" data-category="风光">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">风光</span>
+          <h3>山脉的呼吸</h3>
+          <p>2024</p>
         </div>
+        <div class="gallery-overlay"></div>
       </div>
-      <div class="info">
-        <div class="title">光影肖像</div>
-        <div class="desc">人像 / 2025</div>
+      <div class="gallery-item reveal" data-category="人像">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">人像</span>
+          <h3>静默之眼</h3>
+          <p>2024</p>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item reveal" data-category="城市">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">城市</span>
+          <h3>城市脉搏</h3>
+          <p>2023</p>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item reveal" data-category="自然">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">自然</span>
+          <h3>林间晨光</h3>
+          <p>2023</p>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item gallery-item--wide reveal" data-category="风光">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">风光</span>
+          <h3>天际之线</h3>
+          <p>2024</p>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item reveal" data-category="人像">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80')"></div>
+        <div class="gallery-info">
+          <span class="gallery-cat">人像</span>
+          <h3>光的剪影</h3>
+          <p>2024</p>
+        </div>
+        <div class="gallery-overlay"></div>
       </div>
     </div>
-    <!-- 作品2：新增data属性 -->
-    <div class="item scenery" data-large-img="https://picsum.photos/1200/1800?random=2" data-detail-id="2" data-title="城市黄昏" data-desc="风光 / 2025" data-story="拍摄于城市地标楼顶，捕捉黄昏时分的城市天际线，夕阳的暖光与城市的冷色建筑形成对比，云层的层次丰富了画面质感。使用三脚架固定相机，慢门拍摄保留天空的细节，同时捕捉到远处车辆的光轨，让静态的风景多了一丝动态感。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=2" alt="风光摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">城市黄昏</div>
-          </div>
-        </div>
-      </div>
-      <div class="info">
-        <div class="title">城市黄昏</div>
-        <div class="desc">风光 / 2025</div>
-      </div>
-    </div>
-    <!-- 作品3：新增data属性 -->
-    <div class="item scenery" data-large-img="https://picsum.photos/1200/1800?random=3" data-detail-id="3" data-title="山野清晨" data-desc="风光 / 2025" data-story="清晨五点登山拍摄，捕捉山间的晨雾与第一缕阳光，雾气缭绕在山间，层次感十足。选用广角镜头，展现山野的辽阔，同时突出近景的植被细节，画面色调偏清冷，还原山间清晨的静谧与纯净，拍摄时利用曝光补偿，保留天空与地面的细节层次。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=3" alt="风光摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">山野清晨</div>
-          </div>
-        </div>
-      </div>
-      <div class="info">
-        <div class="title">山野清晨</div>
-        <div class="desc">风光 / 2025</div>
-      </div>
-    </div>
-    <!-- 作品4：新增data属性 -->
-    <div class="item documentary" data-large-img="https://picsum.photos/1200/1800?random=4" data-detail-id="4" data-title="街头纪实" data-desc="人文 / 2025" data-story="街头纪实的核心是“真实”，这张作品拍摄于老城区的街头，捕捉到老人与孩童互动的瞬间，画面充满生活气息。使用35mm镜头，贴近被拍摄者，不打扰、不摆拍，还原最真实的街头场景，色调偏复古，突出画面的故事感与年代感。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=4" alt="纪实摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">街头纪实</div>
-          </div>
-        </div>
-      </div>
-      <div class="info">
-        <div class="title">街头纪实</div>
-        <div class="desc">人文 / 2025</div>
-      </div>
-    </div>
-    <!-- 作品5：新增data属性 -->
-    <div class="item portrait" data-large-img="https://picsum.photos/1200/1800?random=5" data-detail-id="5" data-title="情绪人像" data-desc="人像 / 2025" data-story="这组情绪人像拍摄于室内，利用窗边的自然光，营造柔和的氛围，捕捉人物安静、沉思的情绪。画面以浅色调为主，突出人物的面部表情与眼神，没有多余的装饰，让情绪成为画面的核心，镜头选用85mm定焦，虚化背景，聚焦人物情绪。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=5" alt="人像摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">情绪人像</div>
-          </div>
-        </div>
-      </div>
-      <div class="info">
-        <div class="title">情绪人像</div>
-        <div class="desc">人像 / 2025</div>
-      </div>
-    </div>
-    <!-- 作品6：新增data属性 -->
-    <div class="item scenery" data-large-img="https://picsum.photos/1200/1800?random=6" data-detail-id="6" data-title="海岸线" data-desc="风光 / 2025" data-story="拍摄于海边日落时分，海浪拍打礁石，夕阳洒在海面上，形成金色的波光。使用长焦镜头，压缩画面空间，突出海岸线的线条感，同时捕捉海浪的动态瞬间，画面色调温暖，既有海浪的动感，又有夕阳的静谧，展现海岸线的独特美感。">
-      <div class="item-wrap">
-        <img src="https://picsum.photos/1200/1800?random=6" alt="风光摄影作品">
-        <div class="item-hover">
-          <div class="hover-content">
-            <i class="fa-solid fa-search-plus"></i>
-            <div class="title">海岸线</div>
-          </div>
-        </div>
-      </div>
-      <div class="info">
-        <div class="title">海岸线</div>
-        <div class="desc">风光 / 2025</div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 关于我（保留原有，不改动） -->
-<section class="about" id="about">
-  <div class="about-container">
-    <div class="about-img">
-      <img src="https://picsum.photos/800/1000?random=7" alt="摄影师形象">
+  <!-- Series -->
+  <section class="series" id="series">
+    <div class="section-header">
+      <p class="section-label reveal">摄影系列</p>
+      <h2 class="section-title reveal">主题<em>探索</em></h2>
+    </div>
+    <div class="series-grid">
+      <div class="series-card reveal">
+        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&q=80')"></div>
+        <div class="series-content">
+          <span class="series-num">01</span>
+          <h3>孤独的城市</h3>
+          <p>在喧嚣之中寻找寂静，记录都市中孤独的诗意瞬间。</p>
+          <a href="#" class="series-link">查看系列 →</a>
+        </div>
+      </div>
+      <div class="series-card reveal">
+        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80')"></div>
+        <div class="series-content">
+          <span class="series-num">02</span>
+          <h3>自然的呼唤</h3>
+          <p>深入自然腹地，用镜头诠释大自然最原始的力量与温柔。</p>
+          <a href="#" class="series-link">查看系列 →</a>
+        </div>
+      </div>
+      <div class="series-card reveal">
+        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=800&q=80')"></div>
+        <div class="series-content">
+          <span class="series-num">03</span>
+          <h3>光的诗学</h3>
+          <p>以光为笔，以影为墨，书写关于时间与存在的无声诗篇。</p>
+          <a href="#" class="series-link">查看系列 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="248">0</span>
+        <span class="stat-label">作品数量</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="32">0</span>
+        <span class="stat-label">国家足迹</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="18">0</span>
+        <span class="stat-label">国际奖项</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="9">0</span>
+        <span class="stat-label">年从业经验</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-img reveal">
+      <div class="about-img-inner" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80')"></div>
+      <div class="about-img-accent"></div>
     </div>
     <div class="about-content">
-      <h2>关于我</h2>
-      <p>专注摄影8年，擅长用光影捕捉人物情绪与自然肌理，不追求刻意的摆拍，只记录最真实、最有温度的瞬间。</p>
-      <p>作品曾入选国内摄影展，常年承接人像写真、风光创作、商业纪实等拍摄项目，用镜头为每一位客户、每一处风景，留下专属的光影记忆。</p>
-      <div class="about-tags">
-        <span>人像摄影</span>
-        <span>风光创作</span>
-        <span>商业纪实</span>
-        <span>光影艺术</span>
+      <p class="section-label reveal">摄影师</p>
+      <h2 class="section-title reveal">用镜头<br><em>感知世界</em></h2>
+      <p class="about-text reveal">我相信每一张照片背后都有一个等待被诉说的故事。摄影于我，不仅是记录，更是一种感知与表达的方式——在按下快门的瞬间，时间凝固，情感永恒。</p>
+      <p class="about-text reveal">从喜马拉雅山脉的晨曦到东京街头的霓虹，我的镜头跨越地理与文化，寻找那些触动人心的瞬间。</p>
+      <div class="about-tags reveal">
+        <span>风光摄影</span>
+        <span>人文纪实</span>
+        <span>城市影像</span>
+        <span>商业摄影</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 联系约拍（保留原有，不改动） -->
-<section class="contact" id="contact">
-  <div class="contact-container">
-    <h2>联系约拍</h2>
-    <p class="contact-desc">如果你喜欢我的作品，想记录属于你的专属瞬间，欢迎随时联系我</p>
-    <div class="contact-info">
-      <a href="mailto:youremail@163.com" class="contact-item">
-        <i class="fa-solid fa-envelope"></i>
-        <span>youremail@163.com</span>
-      </a>
-      <a href="tel:13800138000" class="contact-item">
-        <i class="fa-solid fa-phone"></i>
-        <span>13800138000</span>
-      </a>
-      <a href="#" class="contact-item">
-        <i class="fa-solid fa-weixin"></i>
-        <span>wechat_id</span>
-      </a>
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <p class="section-label reveal">开始合作</p>
+      <h2 class="contact-title reveal">让我们共同<br><em>创作</em></h2>
+      <a href="mailto:hello@lenslight.com" class="contact-email reveal">hello@lenslight.com</a>
+      <div class="contact-social reveal">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+        <a href="#">500px</a>
+      </div>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 LENS & LIGHT. 保留所有权利。</p>
+    <p>用光影书写时间</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-img" id="lightboxImg"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
-</section>
 
-<!-- 底部（保留原有，不改动） -->
-<footer>
-  <div class="footer-container">
-    <div class="footer-logo">LUMINANCE</div>
-    <p>用光与影记录瞬间，用镜头讲述故事</p>
-    <div class="footer-social">
-      <a href="#"><i class="fa-solid fa-instagram"></i></a>
-      <a href="#"><i class="fa-solid fa-behance"></i></a>
-      <a href="#"><i class="fa-solid fa-weibo"></i></a>
-    </div>
-    <div class="copyright">© 2025 LUMINANCE 个人摄影作品集 | 保留所有权利</div>
-  </div>
-</footer>
-
-<!-- 回到顶部按钮（保留原有，不改动） -->
-<button id="backToTop" class="back-to-top">
-  <i class="fa-solid fa-chevron-up"></i>
-</button>
-
-<!-- 新增：图片灯箱容器 -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-times"></i></button>
-  <button class="lightbox-prev" id="lightboxPrev"><i class="fa-solid fa-chevron-left"></i></button>
-  <button class="lightbox-next" id="lightboxNext"><i class="fa-solid fa-chevron-right"></i></button>
-  <div class="lightbox-zoom" id="lightboxZoom"><i class="fa-solid fa-search-plus"></i></div>
-  <img src="" alt="灯箱大图" class="lightbox-img" id="lightboxImg">
-  <div class="lightbox-caption" id="lightboxCaption"></div>
-  <!-- 新增：灯箱内详情页入口 -->
-  <a href="" class="lightbox-detail" id="lightboxDetail">查看作品详情 <i class="fa-solid fa-arrow-right ml-1"></i></a>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
