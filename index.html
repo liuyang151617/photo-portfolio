@@ -29,8 +29,7 @@
     <div class="nav-menu" id="navMenu">
       <a href="#work" class="nav-link">作品</a>
       <a href="#series" class="nav-link">系列</a>
-      <a href="#about" class="nav-link">关于</a>
-      <a href="#contact" class="nav-link">联系</a>
+      <a href="#photographer-intro" class="nav-link">联系</a>
     </div>
     <div class="nav-toggle" id="navToggle">
       <span></span><span></span>
@@ -72,15 +71,6 @@
     <div class="section-header">
       <p class="section-label reveal">精选作品</p>
       <h2 class="section-title reveal">每一帧，<br><em>都是故事</em></h2>
-    </div>
-
-    <!-- 分类筛选 -->
-    <div class="gallery-filter reveal">
-      <button class="filter-btn active" data-filter="全部">全部</button>
-      <button class="filter-btn" data-filter="自然">自然</button>
-      <button class="filter-btn" data-filter="人文">人文</button>
-      <button class="filter-btn" data-filter="人像">人像</button>
-      <button class="filter-btn" data-filter="科技">科技</button>
     </div>
 
     <div class="gallery" id="gallery">
@@ -148,39 +138,61 @@
       <p class="section-label reveal">摄影系列</p>
       <h2 class="section-title reveal">主题<em>探索</em></h2>
     </div>
-    <div class="series-grid">
-      <div class="series-card reveal">
-        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&q=80')"></div>
-        <div class="series-content">
-          <span class="series-num">01</span>
-          <h3>孤独的城市</h3>
-          <p>在喧嚣之中寻找寂静，记录都市中孤独的诗意瞬间。</p>
-          <a href="#" class="series-link">查看系列 →</a>
-        </div>
+
+    <div class="series-grid" id="seriesGrid">
+      <div class="series-card reveal" data-series-category="自然">
+        <a href="series-nature.html" class="series-card-link">
+          <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80')"></div>
+          <div class="series-content">
+            <span class="series-num">01</span>
+            <span class="series-cat-tag">自然</span>
+            <h3>自然系列</h3>
+            <p>深入高原腹地，记录山脉在晨昏之间的光影变幻与生命律动。</p>
+            <span class="series-link">进入系列 →</span>
+          </div>
+        </a>
       </div>
-      <div class="series-card reveal">
-        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80')"></div>
-        <div class="series-content">
-          <span class="series-num">02</span>
-          <h3>自然的呼唤</h3>
-          <p>深入自然腹地，用镜头诠释大自然最原始的力量与温柔。</p>
-          <a href="#" class="series-link">查看系列 →</a>
-        </div>
+      <div class="series-card reveal" data-series-category="人文">
+        <a href="series-humanistic.html" class="series-card-link">
+          <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&q=80')"></div>
+          <div class="series-content">
+            <span class="series-num">02</span>
+            <span class="series-cat-tag">人文</span>
+            <h3>人文系列</h3>
+            <p>在喧嚣之中寻找寂静，记录都市中孤独的诗意瞬间。</p>
+            <span class="series-link">进入系列 →</span>
+          </div>
+        </a>
       </div>
-      <div class="series-card reveal">
-        <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=800&q=80')"></div>
-        <div class="series-content">
-          <span class="series-num">03</span>
-          <h3>光的诗学</h3>
-          <p>以光为笔，以影为墨，书写关于时间与存在的无声诗篇。</p>
-          <a href="#" class="series-link">查看系列 →</a>
-        </div>
+      <div class="series-card reveal" data-series-category="人像">
+        <a href="series-portrait.html" class="series-card-link">
+          <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=800&q=80')"></div>
+          <div class="series-content">
+            <span class="series-num">03</span>
+            <span class="series-cat-tag">人像</span>
+            <h3>人像系列</h3>
+            <p>以光为笔，以影为墨，书写关于时间与存在的无声诗篇。</p>
+            <span class="series-link">进入系列 →</span>
+          </div>
+        </a>
+      </div>
+      <div class="series-card reveal" data-series-category="科技">
+        <a href="series-tech.html" class="series-card-link">
+          <div class="series-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80')"></div>
+          <div class="series-content">
+            <span class="series-num">04</span>
+            <span class="series-cat-tag">科技</span>
+            <h3>科技系列</h3>
+            <p>放大微观结构，发现隐藏在精密电路之中的几何与秩序之美。</p>
+            <span class="series-link">进入系列 →</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 摄影师介绍（替换原 Stats 区域） -->
-  <section class="photographer-intro">
+  <!-- 摄影师介绍 -->
+  <section class="photographer-intro" id="photographer-intro">
     <div class="intro-inner">
       <div class="intro-portrait reveal">
         <div class="intro-portrait-img" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80')"></div>
@@ -188,54 +200,23 @@
       </div>
       <div class="intro-content">
         <p class="section-label reveal">摄影师简介</p>
-        <h2 class="intro-name reveal">陈 远 山</h2>
-        <p class="intro-en reveal">CHEN YUANSHAN · PHOTOGRAPHER</p>
+        <h2 class="intro-name reveal">刘 扬</h2>
+        <p class="intro-en reveal">LIU YANG · PHOTOGRAPHER</p>
         <p class="intro-bio reveal">
-          毕业于中央美术学院摄影系，现居北京。从事商业与艺术摄影逾九年，足迹横跨亚欧非三大洲，
-          作品曾入选平遥国际摄影大展、连州摄影年展，并获得2022年度《中国摄影》年度人物提名。
+          毕业于东南大学，摄影两年，现居上海。
+          擅长以极简构图捕捉光影细节，致力于探索自然、人文与科技之间的视觉张力。
         </p>
         <p class="intro-bio reveal">
-          擅长以极简构图捕捉光影细节，致力于探索自然、人文与科技之间的视觉张力。
           相信摄影不只是记录，更是一种沉默而有力的表达方式。
         </p>
-        <div class="intro-awards reveal">
-          <div class="award-item">
-            <span class="award-year">2022</span>
-            <span class="award-name">《中国摄影》年度人物提名</span>
-          </div>
-          <div class="award-item">
-            <span class="award-year">2021</span>
-            <span class="award-name">平遥国际摄影大展 · 优秀作品奖</span>
-          </div>
-          <div class="award-item">
-            <span class="award-year">2020</span>
-            <span class="award-name">连州摄影年展 · 入选作品</span>
-          </div>
-          <div class="award-item">
-            <span class="award-year">2019</span>
-            <span class="award-name">索尼世界摄影奖 · 国家入围奖</span>
+        <div class="intro-contact reveal">
+          <a href="mailto:hello@lenslight.com" class="intro-email">hello@lenslight.com</a>
+          <div class="intro-social">
+            <a href="#">Instagram</a>
+            <a href="#">Behance</a>
+            <a href="#">500px</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="about" id="about">
-    <div class="about-img reveal">
-      <div class="about-img-inner" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80')"></div>
-      <div class="about-img-accent"></div>
-    </div>
-    <div class="about-content">
-      <p class="section-label reveal">创作理念</p>
-      <h2 class="section-title reveal">用镜头<br><em>感知世界</em></h2>
-      <p class="about-text reveal">我相信每一张照片背后都有一个等待被诉说的故事。摄影于我，不仅是记录，更是一种感知与表达的方式——在按下快门的瞬间，时间凝固，情感永恒。</p>
-      <p class="about-text reveal">从喜马拉雅山脉的晨曦到东京街头的霓虹，我的镜头跨越地理与文化，寻找那些触动人心的瞬间。</p>
-      <div class="about-tags reveal">
-        <span>自然风光</span>
-        <span>人文纪实</span>
-        <span>人像摄影</span>
-        <span>科技影像</span>
       </div>
     </div>
   </section>
