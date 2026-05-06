@@ -271,7 +271,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 
 /* ---- Section Shared ---- */
 .section-label {
-  font-size: 0.6rem;
+  font-size: 1.1rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
@@ -731,7 +731,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   color: var(--text);
 }
 .intro-en {
-  font-size: 0.6rem;
+  font-size: 1.3rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
