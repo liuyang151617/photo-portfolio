@@ -342,7 +342,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 .series .section-header { padding-bottom: 3rem; }
 .series-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin: 0 0 2px;
 }
@@ -581,7 +581,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-item--large { grid-column: span 2; }
   .gallery-item--wide { grid-column: span 2; }
-  .series-grid { grid-template-columns: 1fr 1fr; }
+  .series-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
 }
 
@@ -644,6 +644,9 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   flex-wrap: wrap;
   padding: 0 clamp(1.5rem, 8vw, 8rem) 2.5rem;
 }
+.series-filter {
+  padding-bottom: 3rem;
+}
 .filter-btn {
   font-family: var(--font-display);
   font-size: 1rem;
@@ -667,6 +670,26 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 }
 .gallery-item.hidden {
   display: none;
+}
+.series-card.hidden {
+  display: none;
+}
+.series-card-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+.series-cat-tag {
+  display: inline-block;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(201,169,110,0.4);
+  padding: 0.25rem 0.7rem;
+  margin-bottom: 0.8rem;
 }
 
 /* ---- Photographer Intro ---- */
@@ -749,6 +772,39 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   color: var(--text-muted);
   line-height: 1.6;
 }
+
+/* ---- Intro Contact ---- */
+.intro-contact {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+.intro-email {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.intro-email::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 100%;
+  height: 1px; background: var(--accent);
+  transition: right 0.5s var(--ease-out-expo);
+}
+.intro-email:hover::after { right: 0; }
+.intro-social {
+  display: flex; gap: 1.8rem;
+}
+.intro-social a {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+.intro-social a:hover { color: var(--accent); }
 
 @media (max-width: 900px) {
   .intro-inner { grid-template-columns: 1fr; }
