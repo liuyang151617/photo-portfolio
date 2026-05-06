@@ -142,18 +142,18 @@ if (galleryItems.length > 0) {
   galleryObserver.observe(galleryItems[0]);
 }
 
-/* ---- Gallery Filter ---- */
-const filterBtns = document.querySelectorAll('.filter-btn');
-const allItems = document.querySelectorAll('.gallery-item');
+/* ---- Series Filter ---- */
+const seriesFilterBtns = document.querySelectorAll('[data-series-filter]');
+const allSeriesCards = document.querySelectorAll('.series-card');
 
-filterBtns.forEach(btn => {
+seriesFilterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
+    seriesFilterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    allItems.forEach(item => {
-      const match = filter === '全部' || item.dataset.category === filter;
-      item.classList.toggle('hidden', !match);
+    const filter = btn.dataset.seriesFilter;
+    allSeriesCards.forEach(card => {
+      const match = filter === '全部' || card.dataset.seriesCategory === filter;
+      card.classList.toggle('hidden', !match);
     });
   });
 });
