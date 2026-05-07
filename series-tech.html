@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>科技系列 — LENS & LIGHT</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">LENS <em>&</em> LIGHT</a>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html#work" class="nav-link">作品</a>
+      <div class="nav-item">
+        <a href="index.html#series" class="nav-link">系列</a>
+        <div class="nav-dropdown">
+          <a href="series-nature.html">自然</a>
+          <a href="series-humanistic.html">人文</a>
+          <a href="series-portrait.html">人像</a>
+          <a href="series-tech.html">科技</a>
+        </div>
+      </div>
+      <a href="index.html#photographer-intro" class="nav-link">联系</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span></div>
+  </nav>
+
+  <section class="series-hero">
+    <div class="series-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1800&q=85')"></div>
+    <div class="series-hero-overlay"></div>
+    <div class="series-hero-content">
+      <a href="index.html#series" class="series-back">← 返回系列</a>
+      <p class="hero-eyebrow">摄影系列 · 04</p>
+      <h1 class="hero-title"><span>科技</span><em>系列</em></h1>
+      <p class="hero-sub">放大微观结构，探索精密电路与未来建筑中隐藏的几何与秩序之美。</p>
+    </div>
+  </section>
+
+  <section class="work" style="padding-top: 4rem;">
+    <div class="gallery" id="gallery">
+      <div class="gallery-item gallery-item--large">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>电路之美</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>数据流动</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>未来建筑</h3><p>2023</p></div>
+      </div>
+      <div class="gallery-item gallery-item--wide">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>数字宇宙</h3><p>2024</p></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img" style="background-image:url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80')"></div>
+        <div class="gallery-info"><span class="gallery-cat">科技</span><h3>机械之眼</h3><p>2024</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2024 LENS & LIGHT. 保留所有权利。</p>
+    <p>用光影书写时间</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-img" id="lightboxImg"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <style>
+    .series-hero {
+      position: relative;
+      height: 70vh; min-height: 480px;
+      display: flex; align-items: flex-end;
+      padding-bottom: clamp(3rem, 8vw, 6rem);
+      padding-left: clamp(1.5rem, 8vw, 8rem);
+      overflow: hidden;
+    }
+    .series-hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .series-hero:hover .series-hero-bg { transform: scale(1); }
+    .series-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%);
+    }
+    .series-hero-content {
+      position: relative; z-index: 2;
+      padding-top: var(--nav-h);
+    }
+    .series-back {
+      display: inline-block;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .series-back:hover { color: var(--accent); }
+    .nav.scrolled { background: rgba(10,10,10,0.96); backdrop-filter: blur(20px); }
+  </style>
+  <script src="script.js"></script>
+</body>
+</html>
