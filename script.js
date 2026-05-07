@@ -6,15 +6,21 @@
 'use strict';
 
 /* ---- Preloader ---- */
+const hidePreloader = () => {
+  const preloader = document.getElementById('preloader');
+  if (!preloader || preloader.classList.contains('hidden')) return;
+  preloader.classList.add('hidden');
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 200 + i * 150);
+  });
+};
+
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
-    // Trigger hero animations
-    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 200 + i * 150);
-    });
-  }, 2200);
+  setTimeout(hidePreloader, 800);
 });
+
+// 最多等 3 秒，强制关闭
+setTimeout(hidePreloader, 3000);
 
 /* ---- Custom Cursor ---- */
 const cursor = document.getElementById('cursor');

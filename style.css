@@ -343,7 +343,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 .series .section-header { padding-bottom: 3rem; }
 .series-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   margin: 0 0 2px;
 }
@@ -582,7 +582,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-item--large { grid-column: span 2; }
   .gallery-item--wide { grid-column: span 2; }
-  .series-grid { grid-template-columns: repeat(2, 1fr); }
+  .series-grid { grid-template-columns: repeat(3, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
 }
 
