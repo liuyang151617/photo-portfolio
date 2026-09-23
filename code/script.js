@@ -26,7 +26,8 @@ const bgObserver = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '200px 0px' });
 
-document.querySelectorAll('.gallery-img').forEach(el => bgObserver.observe(el));
+// 只观察被转成 data-bg 的节点；<img class="gallery-img"> 走原生 loading="lazy"
+document.querySelectorAll('.gallery-img[data-bg]').forEach(el => bgObserver.observe(el));
 
 /* ---- Preloader ---- */
 const hidePreloader = () => {
@@ -206,7 +207,8 @@ const lightboxClose = document.getElementById('lightboxClose');
 document.querySelectorAll('.gallery-item').forEach(item => {
   item.addEventListener('click', () => {
     const imgEl = item.querySelector('.gallery-img');
-    const bg = imgEl?.style.backgroundImage;
+    // 兼容两种写法：<img class="gallery-img" src="..."> 与 background-image div
+    const bg = imgEl?.style.backgroundImage || (imgEl?.src ? `url("${imgEl.src}")` : '');
     const title = item.querySelector('h3')?.textContent || '';
     const year = item.querySelector('p')?.textContent || '';
 

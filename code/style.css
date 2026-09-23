@@ -310,8 +310,11 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   aspect-ratio: 4/3;
   cursor: pointer;
 }
-.gallery-item--large { grid-column: span 2; }
-.gallery-item--wide { grid-column: span 2; }
+.gallery-item--large,
+.gallery-item--wide {
+  grid-column: span 2;
+  aspect-ratio: 8/3;
+}
 .gallery-img {
   width: 100%; height: 100%;
   background-size: cover;
@@ -320,6 +323,29 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   will-change: transform;
 }
 .gallery-item:hover .gallery-img { transform: scale(1.06); }
+
+/* ---- Gallery: 自然比例变体（不裁切） ----
+   图片按原始比例完整展示，因此每行高度不一致；这是刻意的取舍。 */
+.gallery--natural { align-items: start; }
+.gallery--natural .gallery-item,
+.gallery--natural .gallery-item--large,
+.gallery--natural .gallery-item--wide {
+  aspect-ratio: auto;
+  overflow: visible;
+}
+.gallery--natural .gallery-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  will-change: auto;
+  transition: opacity 0.5s var(--ease-out-expo);
+}
+/* hover 不再放大（放大会重新裁切），改为轻微变暗 */
+.gallery--natural .gallery-item:hover .gallery-img {
+  transform: none;
+  opacity: 0.85;
+}
 .gallery-overlay {
   display: none;
 }
@@ -623,7 +649,10 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   /* Gallery */
   .gallery { grid-template-columns: 1fr; }
   .gallery-item--large,
-  .gallery-item--wide { grid-column: span 1; }
+  .gallery-item--wide {
+    grid-column: span 1;
+    aspect-ratio: 4/3;
+  }
   .gallery-info { opacity: 1; transform: translateY(0); }
   .gallery-overlay { opacity: 1; }
 
