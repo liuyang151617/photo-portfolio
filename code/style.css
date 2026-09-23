@@ -350,7 +350,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 .series .section-header { padding-bottom: 3rem; }
 .series-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin: 0 0 2px;
 }
@@ -373,16 +373,6 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   flex: 1;
   border-top: 1px solid var(--border);
 }
-.series-num {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 3rem; font-weight: 300;
-  color: var(--border);
-  line-height: 1;
-  margin-bottom: 0.8rem;
-  transition: color 0.4s;
-}
-.series-card:hover .series-num { color: rgba(201,169,110,0.2); }
 .series-content h3 {
   font-family: var(--font-display);
   font-size: 1.5rem; font-weight: 400;
@@ -589,7 +579,7 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-item--large { grid-column: span 2; }
   .gallery-item--wide { grid-column: span 2; }
-  .series-grid { grid-template-columns: repeat(3, 1fr); }
+  .series-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
 }
 
@@ -789,12 +779,11 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
 }
 .series-cat-tag {
   display: inline-block;
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   color: var(--accent);
-  border: 1px solid rgba(201,169,110,0.4);
-  padding: 0.25rem 0.7rem;
   margin-bottom: 0.8rem;
 }
 
@@ -829,11 +818,22 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   z-index: -1;
 }
 .intro-name {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+}
+.intro-name-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+.intro-zh {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 300;
-  letter-spacing: 0.3em;
-  margin-bottom: 0.3rem;
+  line-height: 1;
   color: var(--text);
 }
 .intro-en {
@@ -841,7 +841,6 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 2rem;
 }
 .intro-bio {
   font-size: clamp(0.82rem, 1.2vw, 0.9rem);
