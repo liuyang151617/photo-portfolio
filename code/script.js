@@ -136,6 +136,118 @@ if (heroImgs.length > 0) {
   }, 5000);
 }
 
+/* ---- Series Hero Slideshow（系列页 hero 轮播本页图片） ---- */
+// 首页也有一个 #gallery，但没有 .series-hero，所以这个守卫是必需的。
+const seriesHero = document.querySelector('.series-hero');
+const seriesHeroBg = seriesHero && seriesHero.querySelector('.series-hero-bg');
+
+if (seriesHeroBg) {
+  // 图源直接取本页画廊，不另建清单：以后往画廊加图，hero 自动跟着变。
+  const sources = Array.from(document.querySelectorAll('#gallery .gallery-img'))
+    .map(el => el.getAttribute('src'))
+    .filter(Boolean);
+
+  // 一轮 = 淡入时长 + 静止时长。原来 1200 + 5000 = 6200ms，现整体减半。
+  const FADE_MS = 1200;
+  const PERIOD_MS = 3100;
+  const HOLD_MS = PERIOD_MS - FADE_MS;
+  const prefersReducedMotion =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 不足两张就没得轮播；reduced-motion 时静态显示内联背景那张
+  if (sources.length >= 2 && !prefersReducedMotion) {
+    const makeLayer = () => {
+      const img = document.createElement('img');
+      img.className = 'series-hero-slide';
+      img.alt = '';
+      img.setAttribute('aria-hidden', 'true');  // 是画廊图的装饰性重复
+      img.decoding = 'async';
+      seriesHeroBg.appendChild(img);
+      return img;
+    };
+
+    const layers = [makeLayer(), makeLayer()];
+    let front = 0;     // layers 里的当前可见层下标
+    let index = 0;     // 当前图片下标
+    let timer = null;
+    let busy = false;
+
+    // 首帧：内联背景已经是 sources[0]，让底层不透明地盖上即可，不做淡入
+    layers[0].src = sources[0];
+    layers[0].classList.add('is-front', 'no-fade');
+    void layers[0].offsetWidth;
+    layers[0].classList.remove('no-fade');
+
+    const pause = () => {
+      clearTimeout(timer);
+      timer = null;
+    };
+
+    const schedule = () => {
+      pause();
+      if (document.hidden) return;
+      timer = setTimeout(advance, HOLD_MS);
+    };
+
+    const advance = async () => {
+      if (busy) { schedule(); return; }
+      busy = true;
+
+      index = (index + 1) % sources.length;
+      const outgoing = layers[front];
+      const incoming = layers[1 - front];
+
+      try {
+        incoming.src = sources[index];
+        await incoming.decode();   // 解码完再淡入，避免首帧掉帧
+      } catch (err) {
+        busy = false;              // 单张图 404 / 解码失败不该让整条链死掉
+        schedule();
+        return;
+      }
+
+      // 旧图保持不透明、降到下层；新图从 0 淡入到 1。
+      // 整个淡入过程底层始终不透明，父级内联背景透不出来。
+      outgoing.classList.replace('is-front', 'is-under');
+      incoming.classList.remove('no-fade');
+      void incoming.offsetWidth;   // 重新武装 transition
+      incoming.classList.add('is-front');
+
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        incoming.removeEventListener('transitionend', onFadeEnd);
+        clearTimeout(guard);
+        // 新图已完全不透明，此时把旧图瞬时归零（禁用过渡，不产生动画）
+        outgoing.classList.add('no-fade');
+        outgoing.classList.remove('is-under');
+        void outgoing.offsetWidth;
+        front = 1 - front;
+        busy = false;
+        schedule();
+      };
+      const onFadeEnd = (e) => {
+        if (e.target === incoming && e.propertyName === 'opacity') finish();
+      };
+      incoming.addEventListener('transitionend', onFadeEnd);
+      // 兜底：transitionend 在后台标签页可能被推迟甚至不触发
+      const guard = setTimeout(finish, FADE_MS + 400);
+    };
+
+    // 悬停 / 键盘聚焦 / 切到后台时暂停，移开或切回继续
+    seriesHero.addEventListener('mouseenter', pause);
+    seriesHero.addEventListener('mouseleave', schedule);
+    seriesHero.addEventListener('focusin', pause);
+    seriesHero.addEventListener('focusout', schedule);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) pause(); else schedule();
+    });
+
+    schedule();
+  }
+}
+
 /* ---- Scroll Reveal ---- */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
