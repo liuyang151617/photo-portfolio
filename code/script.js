@@ -47,28 +47,21 @@ window.addEventListener('load', () => {
 setTimeout(hidePreloader, 3000);
 
 /* ---- Custom Cursor ---- */
+// 圆点与外圈环都直接写 left/top，与鼠标实时同步，没有任何缓动滞后。
+// 这里原先是 requestAnimationFrame 循环、每帧只走剩余距离的 10%，因而产生拖尾；
+// 拖尾已按要求去掉。两个元素都不对 left/top 做 transition，所以直接定位即刻生效。
 const cursor = document.getElementById('cursor');
 const cursorFollower = document.getElementById('cursorFollower');
 
 if (cursor && cursorFollower) {
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
-
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
+    const x = e.clientX + 'px';
+    const y = e.clientY + 'px';
+    cursor.style.left = x;
+    cursor.style.top = y;
+    cursorFollower.style.left = x;
+    cursorFollower.style.top = y;
   });
-
-  const animateFollower = () => {
-    followerX += (mouseX - followerX) * 0.1;
-    followerY += (mouseY - followerY) * 0.1;
-    cursorFollower.style.left = followerX + 'px';
-    cursorFollower.style.top = followerY + 'px';
-    requestAnimationFrame(animateFollower);
-  };
-  animateFollower();
 }
 
 /* ---- Nav Dropdown Mobile Toggle ---- */

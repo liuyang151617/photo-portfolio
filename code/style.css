@@ -13,6 +13,7 @@
   --accent: #c9a96e;
   --accent-light: #e8cfa0;
   --white: #ffffff;
+  --silver: #c0c0c0;
   --border: rgba(240,236,228,0.08);
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -40,7 +41,11 @@ body {
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; }
 
-/* ---- Custom Cursor ---- */
+/* ---- Custom Cursor ----
+   这两个元素不加任何 transition。位置由 JS 直接写 left/top，本就即时；
+   若再给尺寸加过渡，悬停图片时外环会一边放大一边被 0.12s 的 transform
+   过渡拖着（translate 的 -50% 是按自身宽度算的，宽度一变偏移量就变），
+   看起来就是拖尾。故尺寸/边框一律瞬时切换。 */
 .cursor {
   position: fixed;
   width: 8px; height: 8px;
@@ -49,7 +54,6 @@ img { display: block; width: 100%; }
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background 0.3s;
   mix-blend-mode: normal;
 }
 .cursor-follower {
@@ -60,11 +64,25 @@ img { display: block; width: 100%; }
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s var(--ease-out-expo), width 0.4s, height 0.4s, border-color 0.3s;
 }
-body:has(.gallery-item:hover) .cursor { width: 4px; height: 4px; }
-body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; border-color: var(--accent); }
-@media (pointer: coarse) { .cursor, .cursor-follower { display: none; } body { cursor: auto; } }
+/* 悬停范围取整个画廊而不是单张图：每张图之间只有 2px 间隙，
+   用 .gallery-item:hover 的话鼠标划过图与图的接缝时圆环会瞬间缩回
+   36px 再撑开 80px，连续划过就是一路抖。 */
+body:has(.gallery:hover) .cursor { width: 4px; height: 4px; }
+body:has(.gallery:hover) .cursor-follower { width: 80px; height: 80px; border-color: var(--accent); }
+
+/* 原生光标全站压掉。
+   body { cursor: none } 只管到"继承"这一层，任何显式写了 cursor 的元素都会盖掉它：
+     · <a> 的 cursor:pointer 来自浏览器 UA 样式表，不是本文件写的，无法靠改本文件消除
+     · .gallery-item / .nav-toggle / .filter-btn / .lightbox-close 各自写了 cursor:pointer
+   结果是鼠标移到图片、链接、按钮上时，系统手型光标会重新冒出来，和自绘的
+   圆点+外环同时显示——图片上看到的就是"另一种效果"。这里一次压掉，以后新增
+   组件也不必再记着补。 */
+* { cursor: none !important; }
+@media (pointer: coarse) {
+  .cursor, .cursor-follower { display: none; }
+  * { cursor: auto !important; }
+}
 
 /* ---- Preloader ---- */
 .preloader {
@@ -213,6 +231,18 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   font-style: italic;
   color: var(--accent-light);
   font-weight: 300;
+}
+/* 首页 hero 两行标题做区分：第一行金色，第二行银色且小一号。
+   四个系列页用的是同一套 .hero-title，故首页的差异全收在这个修饰类里，不外溢。
+   必须放在上面 .hero-title span / em 之后：`.hero-title--home em` 与 `.hero-title em`
+   特异性相同（都是 1 类 + 1 元素），平局靠源码顺序决胜，放前面会被覆盖。 */
+.hero-title--home span { color: var(--accent-light); }
+.hero-title--home em {
+  color: var(--silver);
+  /* 用 em（相对父级字号）而不是写死 clamp：
+     这样 480px 断点里 .hero-title { font-size: 3.2rem } 的覆盖会自动跟着缩，
+     不必再补一条断点规则。 */
+  font-size: 0.6em;
 }
 .hero-sub {
   font-size: clamp(0.8rem, 1.5vw, 0.95rem);
@@ -934,6 +964,21 @@ body:has(.gallery-item:hover) .cursor-follower { width: 80px; height: 80px; bord
   color: var(--text-muted);
   margin-bottom: 1rem;
   max-width: 560px;
+}
+/* 简介里"画面是回忆的第一载体"那一句：放大 + 提亮，当作一句题词。
+   与 .intro-bio 特异性相同（都是单类），必须排在其后才生效。 */
+.intro-bio--highlight {
+  /* 行书字体笔画细、字面小，同样字号下比正文字体显小，故比原来再放一档 */
+  font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+  color: var(--accent-light);
+  line-height: 1.5;
+  /* 简介栏很窄（1440px 下正文列只有约 294px），这一句放不下时会在
+     1280px 附近折行。默认断法会留下"载体"两字单独一行；balance 让它
+     均分成两行。不支持该属性的浏览器忽略此行，退化为原来的断法。 */
+  text-wrap: balance;
+  /* 志莽行书（Google Fonts）。本地无网时依次回落到系统的行楷/楷体，
+     最后才是通用 serif —— 保证任何情况下都还是一句能读的中文。 */
+  font-family: 'Zhi Mang Xing', 'STXingkai', '华文行楷', 'KaiTi', '楷体', serif;
 }
 .intro-awards {
   margin-top: 2rem;
