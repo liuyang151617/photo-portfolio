@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>纪实系列 — Light & Young</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet" />
+  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">Light <em>&</em> Young</a>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html#work" class="nav-link">作品</a>
+      <div class="nav-item">
+        <a href="index.html#series" class="nav-link">系列</a>
+        <div class="nav-dropdown">
+          <a href="series-nature.html">自然</a>
+          <a href="series-humanistic.html">人文</a>
+          <a href="series-pets.html">萌宠</a>
+          <a href="series-documentary.html">纪实</a>
+        </div>
+      </div>
+      <a href="index.html#photographer-intro" class="nav-link">联系</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span></div>
+  </nav>
+
+  <section class="series-hero">
+    <div class="series-hero-bg" style="background-image:url('../images/纪实/IMG_8335_web.jpg')"></div>
+    <div class="series-hero-overlay"></div>
+    <div class="series-hero-content">
+      <a href="index.html#series" class="series-back">← 返回系列</a>
+      <p class="hero-eyebrow">摄影系列 · 04</p>
+      <h1 class="hero-title"><span>纪实</span><em>系列</em></h1>
+      <p class="hero-sub">录世间百态，存一刻真实。用镜头留住街巷里正在发生的日常，与时代褶皱中的真实面孔。</p>
+    </div>
+  </section>
+
+  <section class="work" style="padding-top: 4rem;">
+    <!-- gallery--natural: 图片按原始比例完整显示，不裁切；每行占满 3 列，不留空位 -->
+    <div class="gallery gallery--natural" id="gallery">
+
+      <!-- 行1：横图跨2列 + 竖图1列 -->
+      <div class="gallery-item gallery-item--large">
+        <img class="gallery-img" src="../images/纪实/IMG_8335_web.jpg" alt="IMG_8335" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/IMG_8210_web.jpg" alt="IMG_8210" loading="lazy">
+      </div>
+
+      <!-- 行2：横图跨2列 + 竖图1列 -->
+      <div class="gallery-item gallery-item--large">
+        <img class="gallery-img" src="../images/纪实/0c79150735e991da3b5151c64fb6a436_web.jpg" alt="0c79150735e991da3b5151c64fb6a436" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/IMG_8433_web.jpg" alt="IMG_8433" loading="lazy">
+      </div>
+
+      <!-- 行3：三张 1 列 -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/IMG_8490_web.jpg" alt="IMG_8490" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/11300f48eca766d85d3b585a2b93b1b5_web.jpg" alt="11300f48eca766d85d3b585a2b93b1b5" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/IMG_8532_web.jpg" alt="IMG_8532" loading="lazy">
+      </div>
+
+      <!-- 行4：横图跨2列 + 竖图1列 -->
+      <div class="gallery-item gallery-item--large">
+        <img class="gallery-img" src="../images/纪实/e853da4fd945f7e2839ae376ae6eed91_web.jpg" alt="e853da4fd945f7e2839ae376ae6eed91" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/042468db52fa9d772ac992ceffb658fd_web.jpg" alt="042468db52fa9d772ac992ceffb658fd" loading="lazy">
+      </div>
+
+      <!-- 行5：横图跨2列 + 竖图1列 -->
+      <div class="gallery-item gallery-item--large">
+        <img class="gallery-img" src="../images/纪实/64e8d72fd6af9886e9c8b1fb1c9059e0_web.jpg" alt="64e8d72fd6af9886e9c8b1fb1c9059e0" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="../images/纪实/4025388f202ac784e713b04b126da8cf_web.jpg" alt="4025388f202ac784e713b04b126da8cf" loading="lazy">
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© Light & Young. 保留所有权利</p>
+    <p>用光影书写时间</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-img" id="lightboxImg"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&family=Zhi+Mang+Xing&display=swap" rel="stylesheet" />
   <!-- Performance: preload critical assets -->
-  <link rel="preload" as="image" href="../images/首页/牡丹.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="../images/首页/IMG_8641_web.jpg" fetchpriority="high" />
   <link rel="dns-prefetch" href="https://images.unsplash.com" />
 </head>
 <body>
@@ -37,7 +37,7 @@
           <a href="series-nature.html">自然</a>
           <a href="series-humanistic.html">人文</a>
           <a href="series-pets.html">萌宠</a>
-          <a href="series-food.html">美食</a>
+          <a href="series-documentary.html">纪实</a>
         </div>
       </div>
       <a href="#photographer-intro" class="nav-link">联系</a>
@@ -86,44 +86,40 @@
     </div>
 
     <!-- gallery--natural: 图片按原始比例完整显示，不裁切（行高不对齐是有意为之） -->
+    <!-- 图源 = images/首页/ 下的 8 张。竖图只放 1 列：该变体下格子宽度决定显示宽度，
+         2:3 竖图放进跨 2 列的槽会撑到约 950x1425px。每行 large(2col)+small(1col) 占满 3 列。 -->
     <div class="gallery gallery--natural" id="gallery">
 
-      <!-- Row 1: 自然 large(2col) + 自然 small(1col) → 3 cols filled -->
+      <!-- Row 1: 自然 large(2col) + 纪实 small(1col,竖) → 3 cols filled -->
       <div class="gallery-item gallery-item--large" data-category="自然">
-        <img class="gallery-img" src="../images/首页/牡丹.jpg" alt="牡丹" loading="lazy">
+        <img class="gallery-img" src="../images/首页/牡丹_web.jpg" alt="牡丹" loading="lazy">
       </div>
-      <div class="gallery-item" data-category="自然">
-        <img class="gallery-img" src="../images/首页/绿芽.jpg" alt="绿芽" loading="lazy">
-      </div>
-
-      <!-- Row 2: 人文 large(2col) + 自然 small(1col) → 3 cols filled -->
-      <div class="gallery-item gallery-item--large" data-category="人文">
-        <img class="gallery-img" src="../images/首页/IMG_8335_web.jpg" alt="人文" loading="lazy">
-      </div>
-      <div class="gallery-item" data-category="自然">
-        <img class="gallery-img" src="../images/首页/yeah.jpg" alt="自然" loading="lazy">
+      <div class="gallery-item" data-category="纪实">
+        <img class="gallery-img" src="../images/首页/IMG_8433_web.jpg" alt="IMG_8433" loading="lazy">
       </div>
 
-      <!-- Row 3: 萌宠 small + 萌宠 small + 萌宠 small → 3 cols filled -->
-      <div class="gallery-item" data-category="萌宠">
-        <img class="gallery-img" src="../images/首页/1accfa42c29cf900c348665381308ba4.jpg" alt="萌宠" loading="lazy">
+      <!-- Row 2: 自然 large(2col) + 纪实 small(1col,竖) → 3 cols filled -->
+      <div class="gallery-item gallery-item--large" data-category="自然">
+        <img class="gallery-img" src="../images/首页/IMG_6003_web.jpg" alt="IMG_6003" loading="lazy">
       </div>
-      <div class="gallery-item" data-category="萌宠">
-        <img class="gallery-img" src="../images/萌宠/1ad73294045e4cc83952a8a599420d9f.jpg" alt="萌宠" loading="lazy">
-      </div>
-      <div class="gallery-item" data-category="萌宠">
-        <img class="gallery-img" src="../images/萌宠/229260d5489f8ccf8aa65d1ceae682f6.jpg" alt="萌宠" loading="lazy">
+      <div class="gallery-item" data-category="纪实">
+        <img class="gallery-img" src="../images/首页/042468db52fa9d772ac992ceffb658fd_web.jpg" alt="042468db52fa9d772ac992ceffb658fd" loading="lazy">
       </div>
 
-      <!-- Row 4: 人文 small + 萌宠 small + 萌宠 small → 3 cols filled -->
+      <!-- Row 3: 自然 large(2col) + 人文 small(1col,竖) → 3 cols filled -->
+      <div class="gallery-item gallery-item--large" data-category="自然">
+        <img class="gallery-img" src="../images/首页/IMG_8641_web.jpg" alt="IMG_8641" loading="lazy">
+      </div>
       <div class="gallery-item" data-category="人文">
-        <img class="gallery-img" src="../images/首页/4025388f202ac784e713b04b126da8cf_web.jpg" alt="人文" loading="lazy">
+        <img class="gallery-img" src="../images/首页/e76b42fe8aa722b7500cfb729bfa89d3_web.jpg" alt="e76b42fe8aa722b7500cfb729bfa89d3" loading="lazy">
       </div>
-      <div class="gallery-item" data-category="萌宠">
-        <img class="gallery-img" src="../images/萌宠/d2c1d2d2002900daae14e052a33892f0.jpg" alt="萌宠" loading="lazy">
+
+      <!-- Row 4: 人文 large(2col) + 纪实 small(1col,横) → 3 cols filled -->
+      <div class="gallery-item gallery-item--large" data-category="人文">
+        <img class="gallery-img" src="../images/首页/5b464d8ab8cd5dd1bbb4b04449434e7f_web.jpg" alt="5b464d8ab8cd5dd1bbb4b04449434e7f" loading="lazy">
       </div>
-      <div class="gallery-item" data-category="萌宠">
-        <img class="gallery-img" src="../images/首页/af3aa28c5b0dafc2e52ea262f0b311f9.jpg" alt="萌宠" loading="lazy">
+      <div class="gallery-item" data-category="纪实">
+        <img class="gallery-img" src="../images/首页/IMG_8335_web.jpg" alt="IMG_8335" loading="lazy">
       </div>
 
     </div>
@@ -153,11 +149,22 @@
       </div>
       <div class="series-card reveal" data-series-category="人文">
         <a href="series-humanistic.html" class="series-card-link">
-          <div class="series-img" style="background-image:url('../images/人文/4025388f202ac784e713b04b126da8cf_web.jpg')"></div>
+          <div class="series-img" style="background-image:url('../images/人文/0015aca257838d3aba207fec3da9625d_web.jpg')"></div>
           <div class="series-content">
             <span class="series-cat-tag">人文</span>
             
             <p>阅人间烟火，载岁月尘痕</p>
+            <span class="series-link">进入系列 →</span>
+          </div>
+        </a>
+      </div>
+      <div class="series-card reveal" data-series-category="纪实">
+        <a href="series-documentary.html" class="series-card-link">
+          <div class="series-img" style="background-image:url('../images/纪实/4025388f202ac784e713b04b126da8cf_web.jpg')"></div>
+          <div class="series-content">
+            <span class="series-cat-tag">纪实</span>
+
+            <p>录世间百态，存一刻真实</p>
             <span class="series-link">进入系列 →</span>
           </div>
         </a>
@@ -167,19 +174,8 @@
           <div class="series-img" style="background-image:url('../images/萌宠/a2e67a69957c7858efe4cce7821eb934.jpg')"></div>
           <div class="series-content">
             <span class="series-cat-tag">萌宠</span>
-            
+
             <p>拾生灵憨态，存一隅温良</p>
-            <span class="series-link">进入系列 →</span>
-          </div>
-        </a>
-      </div>
-      <div class="series-card reveal" data-series-category="美食">
-        <a href="series-food.html" class="series-card-link">
-          <div class="series-img" style="background-image:url('../images/美食/00853b92567c752ef7761531ffa5052b_web.jpg')"></div>
-          <div class="series-content">
-            <span class="series-cat-tag">美食</span>
-            
-            <p>品人间滋味，留烟火清欢</p>
             <span class="series-link">进入系列 →</span>
           </div>
         </a>

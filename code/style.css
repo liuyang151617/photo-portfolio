@@ -197,9 +197,9 @@ body:has(.gallery:hover) .cursor-follower { width: 80px; height: 80px; border-co
   will-change: opacity, transform;
 }
 .hero-img.active { opacity: 1; transform: scale(1); }
-.hero-img--1 { background-image: url('../images/首页/牡丹.jpg'); }
+.hero-img--1 { background-image: url('../images/首页/IMG_8641_web.jpg'); }
 .hero-img--2 { background-image: url('../images/首页/IMG_8335_web.jpg'); }
-.hero-img--3 { background-image: url('../images/首页/绿芽.jpg'); }
+.hero-img--3 { background-image: url('../images/首页/牡丹_web.jpg'); }
 .hero::after {
   content: '';
   position: absolute; inset: 0;
